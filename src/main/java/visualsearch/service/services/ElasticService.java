@@ -45,16 +45,22 @@ public class ElasticService implements Closeable {
     public static final String ELASTIC_PORT = "ELASTIC_PORT";
     public static String INDEX = "images";
     public static String TYPE = "processed_images";
+    private static String ELASTIC_DEFAULT_PORT = "9200";
+    private static String ELASTIC_DEFAULT_HOST = "localhost";
 
     private final HttpHost httpHost;
 
     private final CloseableHttpAsyncClient client = HttpAsyncClients.createDefault();
 
     public ElasticService() {
-        httpHost = new HttpHost(System.getProperty(ELASTIC_HOST), Integer.parseInt(System.getProperty(ELASTIC_PORT)));
+        String es_host = System.getProperty(ELASTIC_HOST);
+        String es_port = System.getProperty(ELASTIC_PORT);
+        if (es_host == null || es_host.isEmpty()) { es_host = ES_DEFAULT_HOST; }
+        if (es_port == null || es_port.isEmpty()) { es_port = ES_DEFAULT_PORT; }
+        logger.info("Using elastic host " + System.getProperty(es_host));
+        logger.info("Using elastic port " + System.getProperty(es_port));
+        httpHost = new HttpHost(es_host, Integer.parseInt((es_port));
         client.start();
-        logger.info("Using elastic host " + System.getProperty(ELASTIC_HOST));
-        logger.info("Using elastic port " + System.getProperty(ELASTIC_PORT));
     }
 
     public Mono<ElasticResponse> post(String body) {
