@@ -29,8 +29,12 @@ import visualsearch.service.search.SearchImageHandler;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
+import org.opencv.core.Core;
+
 @SpringBootApplication
 public class Application {
+
+    static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
