@@ -17,6 +17,7 @@
 
 package visualsearch.service;
 
+import org.eclipse.jetty.server.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -24,17 +25,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import visualsearch.service.index.IndexImageHandler;
+import visualsearch.service.main.MainResponseHandler;
 import visualsearch.service.search.SearchImageHandler;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-
-import org.opencv.core.Core;
 
 @SpringBootApplication
 public class Application {
-
-    static {System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
@@ -49,5 +48,10 @@ public class Application {
     @Bean
     public RouterFunction<ServerResponse> searchImageRouterFunction(SearchImageHandler searchImageHandler) {
         return route(POST("/image_search"), searchImageHandler::handle);
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> mainResponseRouterFunction(MainResponseHandler mainResponseHandler) {
+        return route(GET("/"), mainResponseHandler::handle);
     }
 }
