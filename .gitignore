@@ -11,3 +11,6 @@ esdata/
 logstash-5*
 jetty-access.log*
 out/
+caches/
+daemon/
+native/
