@@ -9,5 +9,5 @@ visual-search.iws
 data/
 esdata/
 logstash-5*
-jetty-access*
+jetty-access.log*
 out/
