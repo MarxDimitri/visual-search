@@ -64,7 +64,6 @@ targetCompatibility = 1.8
 ext['elasticsearch.version'] = '6.4.0'
 
 dependencies {
-
     compile("org.springframework.boot:spring-boot-starter-webflux:2.0.0.BUILD-SNAPSHOT")
     compile("org.springframework.boot:spring-boot-starter-jetty:2.0.0.BUILD-SNAPSHOT")
     compile("org.springframework.boot:spring-boot-starter-actuator:2.0.0.BUILD-SNAPSHOT")
@@ -73,7 +72,6 @@ dependencies {
     compile("org.apache.httpcomponents:httpmime:4.3.6")
     compile("commons-io:commons-io:2.4")
     compile("org.json:json:20140107")
-//    compile("org.openpnp:3.4.2")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:2.0.0.BUILD-SNAPSHOT")
     testCompile("io.projectreactor:reactor-test:3.1.1.RELEASE")
