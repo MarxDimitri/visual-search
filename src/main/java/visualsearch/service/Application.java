@@ -17,7 +17,7 @@
 
 package visualsearch.service;
 
-import org.eclipse.jetty.server.Server;
+import org.opencv.core.Core;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -28,12 +28,14 @@ import visualsearch.service.index.IndexImageHandler;
 import visualsearch.service.main.MainResponseHandler;
 import visualsearch.service.search.SearchImageHandler;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @SpringBootApplication
 public class Application {
+
+    static { System.loadLibrary(Core.NATIVE_LIBRARY_NAME);}
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);

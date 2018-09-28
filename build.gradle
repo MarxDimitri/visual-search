@@ -149,15 +149,15 @@ task openCVPlatformJar(type: Jar, dependsOn: make) {
 
     manifest {
         attributes(
-                "Created-By": "IHMC Gradle Build Script",
+                "Created-By": "Gradle Build Script",
                 "Implementation-Title": "OpenCV Native Library, ${osName}",
                 "Implementation-Version": project.version,
-                "Implementation-Vendor": "Itseez",
+                "Implementation-Vendor": "X",
 
                 "Bundle-Name": "${baseName}",
                 "Bundle-Version": project.version,
                 "Bundle-License": "https://opensource.org/licenses/BSD-3-Clause",
-                "Bundle-Vendor": "IHMC")
+                "Bundle-Vendor": "X")
     }
 
     if(!OperatingSystem.current().isWindows()){
